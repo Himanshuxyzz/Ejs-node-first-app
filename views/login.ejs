@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Hello From Home Page</h1>
+
+    <main>
+        <form action="/login" method="post">
+            <h1 class="txt-center">Login Now</h1>
+            <div class="form_wrapper">
+                <label class="form_label" for="email">Enter email: </label>
+                <input class="form_input" type="email" name="email" value="<%= locals.email %>">
+            </div>
+
+            <div class="form_wrapper">
+                <label class="form_label" for="password">Enter password :</label>
+                <input class="form_input" name="password" type="password">
+            </div>
+            <div class="btn_wrapper">
+                <button type="submit">Login</button>
+            </div>
+
+            <div class="btn_wrapper">
+                <p class="error">
+                    <%= locals.message %>
+                </p>
+            </div>
+
+
+        </form>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
