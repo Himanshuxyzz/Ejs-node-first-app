@@ -1,19 +1,45 @@
 console.log("Welcome to the NODE JS api :)");
 console.log("<------------------------------->");
 
-import {config} from "dotenv";
+import { config } from "dotenv";
 // dotenv.config();
 import express from "express";
 import userRouter from "./routes/usersRoute.js";
+import taskRouter from "./routes/taskRoutes.js";
+import { errorMiddlewares } from "./middlewares/error.js";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 // import { connectDb } from "./config/db.js";
 export const app = express();
 // const PORT = process.env.PORT || 7979;
 config({
-  path:"./config/config.env",
-})
+  path: "./config/config.env",
+});
 // using middlewares to post data from the post request body either with postman or thunder client
 app.use(express.json());
-app.use("/users", userRouter);
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
+// using routes
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/task", taskRouter);
+
+// app.use((err, req, res, next) => {
+//   // console.log(err);
+//   // console.log(err.message)
+//   return res.status(404).json({
+//     success: false,
+//     message: err.message,
+//   });
+// });
+// using error middlewares
+app.use(errorMiddlewares);
 // connectDb();
 
 // mongoose

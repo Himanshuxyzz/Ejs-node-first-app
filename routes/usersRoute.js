@@ -1,25 +1,22 @@
 import express from "express";
 const router = express.Router();
 import {
-  getAllusers,
   createUser,
-  special,
-  getUserDetailById,
-  UpdateUserDetailById,
-  deleteUserDetailById,
+  getMyprofile,
+  login,
+  logout
 } from "../controllers/user.js";
+import { isAuthenticated } from "../middlewares/auth.js";
 
-router.get("/all", getAllusers);
+// router.get("/all", getAllusers);
 
 router.post("/new", createUser);
+router.post("/login", login);
+router.get("/logout", logout);
 
-router.get("/userid/special", special);
 
-router
-  .route("/userid/:id")
-  .get(getUserDetailById)
-  .put(UpdateUserDetailById)
-  .delete(deleteUserDetailById);
+// router.route("/userid/:id").get(getMyprofile);
+router.get("/me",isAuthenticated, getMyprofile);
 
 // router.get("/userid/:id",getUserDetailById );
 
