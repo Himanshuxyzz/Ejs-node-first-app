@@ -5,8 +5,9 @@ export const connectDb = () => {
     .connect(`${process.env.DB_CONN_URL}`, {
       dbName: "backend_api",
     })
-    .then(() => {
-      console.log("Database is running");
+    .then((c) => {
+      console.log(`Database is running 👨‍💻`)
+      console.log(`Database is connected with ${c.connection.host}`);
     })
     .catch((err) => {
       console.log(err);

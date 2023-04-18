@@ -27,6 +27,9 @@ app.use(
 );
 
 // using routes
+app.get("/", (req, res) => {
+  res.send("<h1>Hello from server</h1>");
+});
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/task", taskRouter);
 
